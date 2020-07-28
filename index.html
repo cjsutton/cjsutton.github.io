@@ -11,6 +11,20 @@
   
     gtag('config', 'UA-92424902-1');
   </script>
+  <script>
+    /**
+    * Function that captures a click on an outbound link in Analytics.
+    * This function takes a valid URL string as an argument, and uses that URL string
+    * as the event label. Setting the transport method to 'beacon' lets the hit be sent
+    * using 'navigator.sendBeacon' in browser that support it.
+    */
+    var captureOutboundLink = function(url) {
+       ga('send', 'event', 'outbound', 'click', url, {
+         'transport': 'beacon',
+         'hitCallback': function(){document.location = url;}
+       });
+    }
+  </script>
   <meta name="Description" content="The ultimate DNS troubleshooting tool. Think it might be DNS? It probably is.">
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -69,9 +83,9 @@
     <h1>YES</h1>
     <br>
     <br>
-    <h2><a href="https://shop.spreadshirt.com/technerdshirts/subnet+mask-A5ebead2a1cbf3a422adad7c7?productType=1458&sellable=0XO54j72mmtr8pYnzpAl-1458-216&appearance=70&size=29">subnet mask mask</a></h2>
-    <h2><a href="http://technerdshirts.com">sysadmin shirts</a></h2>
-    <h2><a href="https://amzn.to/2KS0C6b">what's DNS?</a></h2>
+    <h2><a href="https://shop.spreadshirt.com/technerdshirts/subnet+mask-A5ebead2a1cbf3a422adad7c7?productType=1458&sellable=0XO54j72mmtr8pYnzpAl-1458-216&appearance=70&size=29" onclick="captureOutboundLink('https://shop.spreadshirt.com/technerdshirts/subnet+mask-A5ebead2a1cbf3a422adad7c7?productType=1458&sellable=0XO54j72mmtr8pYnzpAl-1458-216&appearance=70&size=29'); return false;">subnet mask mask</a></h2>
+    <h2><a href="http://technerdshirts.com" onclick="captureOutboundLink('http://technerdshirts.com'); return false;">sysadmin shirts</a></h2>
+    <h2><a href="https://amzn.to/2KS0C6b" onclick="captureOutboundLink('https://amzn.to/2KS0C6b'); return false;">what's DNS?</a></h2>
     <h3>as an amazon associate i earn from qualifying purchases.</h3>
   </section>
 </body>
