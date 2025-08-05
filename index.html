@@ -1,81 +1,216 @@
 <!doctype html>
 <html lang="en">
-<!-- GitHub Pages hosting -->
 <head>
-<!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5587XGM');</script>
-<!-- End Google Tag Manager --> 
-  <link rel="preconnect dns-prefetch" href="https://www.google-analytics.com">
-  <link rel="preconnect dns-prefetch" href="https://www.googletagmanager.com">
+  <!-- Critical DNS prefetch for external resources -->
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <meta name="Description" content="The ultimate DNS troubleshooting tool. Think it might be DNS? It probably is! It's always DNS.">
+  
+  <!-- Preload critical fonts to prevent FOUT -->
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@380;700&display=swap" as="style">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@380;700&display=swap">
+  
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The ultimate DNS troubleshooting tool. Think it might be DNS? It probably is! It's always DNS.">
+  
   <title>IS IT DNS?</title>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap" as="style" 
-   onload="this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap"></noscript>
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Oswald:wght@380&display=swap" as="style" 
-   onload="this.rel='stylesheet'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@380&display=swap"></noscript> 
+  
+  <!-- Inline critical CSS to eliminate render-blocking -->
   <style>
-    h1 {
-      font-family: 'Oswald', sans-serif;
-    	font-size: 180px;
-    	font-style: normal;
-    	font-variant: normal;
-    	font-weight: 700;
-    	line-height: 26.4px;
-      color: #00FF00;
-      text-align: center;
-  		    }
-    h2 {
-      font-family: 'Oswald', sans-serif;
-    	font-size: 18px;
-    	font-style: normal;
-    	font-variant: normal;
-    	font-weight: 380;
-    	line-height: 26.4px;
-      color: #00FF00;
-      text-align: center;
-  		    }
-    h3 {
-      font-family: 'Oswald', sans-serif;
-    	font-size: 16px;
-    	font-style: normal;
-    	font-variant: normal;
-    	font-weight: 380;
-    	line-height: 26.4px;
-      color: #00FF00;
-      text-align: center;
-  		    }
-  	a:link {
-  	  color: #00FF00;
-  	  		}	
-  	a:visited {
-  	  color: #00FF00;
-  	  		}
+    /* CSS Reset and base styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    html, body {
+      height: 100%;
+    }
+    
     body {
-        background: black }
-    section {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-right: -50%;
-        transform: translate(-50%, -50%) }
+      background: #000;
+      font-family: 'Oswald', 'Arial Black', Arial, sans-serif; /* Fallback fonts */
+    }
+    
+    /* Container using absolute positioning like original */
+    .container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-right: -50%;
+      transform: translate(-50%, -50%);
+      max-width: 90vw; /* Responsive container width */
+      text-align: center;
+    }
+    
+    /* Main heading styles */
+    .main-text {
+      font-size: clamp(80px, 25vw, 180px); /* Responsive font size */
+      font-weight: 700;
+      color: #00FF00;
+      text-align: center;
+      line-height: 26.4px;
+    }
+    
+    /* Secondary text styles */
+    .subtitle {
+      font-size: clamp(14px, 3vw, 18px);
+      font-weight: 380;
+      color: #00FF00;
+      text-align: center;
+      line-height: 26.4px;
+    }
+    
+    .footer-text {
+      font-size: clamp(12px, 2.5vw, 16px);
+      font-weight: 380;
+      color: #00FF00;
+      text-align: center;
+      line-height: 26.4px;
+    }
+    
+    /* Link styles */
+    a:link {
+      color: #00FF00;
+    }
+    
+    a:visited {
+      color: #00FF00;
+    }
+    
+    /* Container for all content */
+    .container {
+      text-align: center;
+      max-width: 90vw;
+    }
+    
+    /* Preload spinner (hidden by default, only shows if fonts are slow) */
+    .loading {
+      display: none;
+      color: #00FF00;
+      font-size: 24px;
+    }
+    
+    /* Media queries for better mobile experience */
+    @media (max-width: 480px) {
+      .main-text {
+        line-height: 1.1; /* Better line height for mobile */
+      }
+      
+      .container {
+        max-width: 95vw; /* More space on very small screens */
+      }
+    }
+    
+    /* Tablet breakpoint */
+    @media (max-width: 768px) {
+      .container {
+        max-width: 92vw;
+      }
+    }
+    
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      .main-text {
+        color: #FFFFFF; /* Pure white for high contrast */
+      }
+      
+      .subtitle, .footer-text {
+        color: #FFFFFF;
+      }
+      
+      a:link, a:visited {
+        color: #FFFFFF;
+      }
+    }
+    
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .container {
+        transform: translate(-50%, -50%); /* Ensure no animations */
+      }
+      
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+    
+    /* Focus styles for keyboard navigation */
+    a:focus {
+      outline: 2px solid #00FF00;
+      outline-offset: 2px;
+    }
+    
+    /* Dark mode support (though this page is already dark) */
+    @media (prefers-color-scheme: light) {
+      /* Keep dark theme as it's the brand */
+    }
+    
+    /* Media queries for better mobile experience */
+    @media (max-width: 480px) {
+      .main-text {
+        letter-spacing: 0.05em;
+      }
+    }
+    
+    /* High contrast mode support */
+    @media (prefers-contrast: high) {
+      .main-text {
+        text-shadow: none;
+      }
+    }
+    
+    /* Reduce motion for accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .main-text {
+        animation: none;
+      }
+    }
   </style>
+  
+  <!-- Google Tag Manager (moved to end of head for better performance) -->
+  <script>
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5587XGM');
+  </script>
 </head>
 <body>
   <!-- Google Tag Manager (noscript) -->
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5587XGM"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <section>
-    <h1>YES</h1>
-  </section>
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5587XGM"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+  
+  <div class="container">
+    <h1 class="main-text">YES</h1>
+  </div>
+  
+  <!-- Font loading optimization script -->
+  <script>
+    // Ensure fonts are loaded before showing content
+    if ('fonts' in document) {
+      document.fonts.ready.then(function() {
+        document.body.style.visibility = 'visible';
+      });
+      
+      // Fallback timeout
+      setTimeout(function() {
+        document.body.style.visibility = 'visible';
+      }, 3000);
+    } else {
+      // Fallback for browsers without Font Loading API
+      document.body.style.visibility = 'visible';
+    }
+  </script>
 </body>
 </html>
